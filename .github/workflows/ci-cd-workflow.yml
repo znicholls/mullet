@@ -109,9 +109,30 @@ jobs:
         password: ${{ secrets.test_pypi_password }}
         repository_url: https://test.pypi.org/legacy/
 
+  test-pypi-install:
+    needs: deploy-test-pypi
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
+
+    steps:
+    - name: Setup python
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install package from test PyPI
+      run: |
+        pip install --upgrade pip
+        pip install pandas
+        pip install -i https://testpypi.python.org/pypi mullet --no-dependencies --pre
+    - name: Test installation
+      run: |
+        python -c "import sys; sys.path.remove(''); import mullet; print(mullet.__version__)"
+
   deploy-pypi:
-    needs: build
-    if: startsWith(github.ref, 'refs/tags/v')
+    needs: test-pypi-install
 
     runs-on: ubuntu-latest
     strategy:
