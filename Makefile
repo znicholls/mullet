@@ -53,7 +53,7 @@ test:  $(VENV_DIR) ## run the full testsuite
 
 virtual-environment:  ## update venv, create a new venv if it doesn't exist
 	make $(VENV_DIR)
-	jupyter nbextension enable --py widgetsnbextension
+	$(VENV_DIR)/bin/jupyter nbextension enable --py widgetsnbextension
 
 $(VENV_DIR): setup.py
 	[ -d $(VENV_DIR) ] || python3 -m venv $(VENV_DIR)
