@@ -51,6 +51,25 @@ docs: venv  ## build the docs
 test:  $(VENV_DIR) ## run the full testsuite
 	$(VENV_DIR)/bin/pytest --cov -rfsxEX --cov-report term-missing
 
+test-testpypi-install: $(VENV_DIR)  ## test whether installing from test PyPI works
+	$(eval TEMPVENV := $(shell mktemp -d))
+	python3 -m venv $(TEMPVENV)
+	$(TEMPVENV)/bin/pip install pip --upgrade
+	# Install dependencies not on testpypi registry
+	$(TEMPVENV)/bin/pip install pandas
+	# Install pymagicc without dependencies.
+	$(TEMPVENV)/bin/pip install \
+		-i https://testpypi.python.org/pypi mullet \
+		--no-dependencies --pre
+	$(TEMPVENV)/bin/python -c "import sys; sys.path.remove(''); import mullet; print(mullet.__version__)"
+
+test-pypi-install: $(VENV_DIR)  ## test whether installing from PyPI works
+	$(eval TEMPVENV := $(shell mktemp -d))
+	python3 -m venv $(TEMPVENV)
+	$(TEMPVENV)/bin/pip install pip --upgrade
+	$(TEMPVENV)/bin/pip install mullet --pre
+	$(TEMPVENV)/bin/python scripts/test_install.py
+
 virtual-environment:  ## update venv, create a new venv if it doesn't exist
 	make $(VENV_DIR)
 	$(VENV_DIR)/bin/jupyter nbextension enable --py widgetsnbextension
