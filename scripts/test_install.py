@@ -1,4 +1,5 @@
-"""Test that all of our modules can be imported
+"""
+Test that all of our modules can be imported
 
 Thanks https://stackoverflow.com/a/25562415/10473080
 """
