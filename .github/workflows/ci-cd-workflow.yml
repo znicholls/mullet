@@ -1,4 +1,4 @@
-name: Mullet-CI-CD
+name: Mullet CI-CD
 on: push
 
 jobs:
