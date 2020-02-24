@@ -45,6 +45,9 @@ isort: venv  ## format the code
 		echo Not trying any formatting. Working directory is dirty ... >&2; \
 	fi;
 
+docs: venv  ## build the docs
+	$(VENV_DIR)/bin/sphinx-build -M html docs/source docs/build
+
 test:  $(VENV_DIR) ## run the full testsuite
 	$(VENV_DIR)/bin/pytest --cov -rfsxEX --cov-report term-missing
 

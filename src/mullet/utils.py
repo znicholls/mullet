@@ -9,8 +9,11 @@ def add_example(first, second):
 
     Parameters
     ----------
-    first, second : float
-        Inputs to add
+    first : float
+        First input to add
+
+    second : float
+        Other input to add
 
     Returns
     -------

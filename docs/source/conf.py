@@ -40,10 +40,9 @@ extensions = [
     "sphinx.ext.napoleon",
 ]
 language = "en"
-master_doc = "index"
+# master_doc = "index"
 pygments_style = "sphinx"
 source_suffix = ".rst"
-templates_path = ["templates"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -51,7 +50,7 @@ templates_path = ["_templates"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ["build"]
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -65,7 +64,7 @@ html_context = {
     "github_user": "znicholls",
     "github_repo": "mullet",
     "github_version": "master",
-    "conf_py_path": "/docs/",
+    # "conf_py_path": "/docs/source",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
