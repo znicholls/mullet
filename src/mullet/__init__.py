@@ -1,5 +1,5 @@
 """
-Model for the evalUation of sea-LeveL risE and Temperature (MULLET)
+Model for the evalUation of sea-LeveL risE and Temperature (Mullet)
 
 Work in progress.
 In its current form, this package is meant to be a playground.
