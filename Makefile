@@ -19,7 +19,7 @@ help:
 
 checks: venv  ## run all the checks
 	@echo "=== bandit ==="; $(VENV_DIR)/bin/bandit -c .bandit.yml -r mullet || echo "--- bandit failed ---" >&2; \
-		echo "\n\n=== black ==="; $(VENV_DIR)/bin/black --check src tests setup.py --exclude mullet/_version.py || echo "--- black failed ---" >&2; \
+		echo "\n\n=== black ==="; $(VENV_DIR)/bin/black --check src tests setup.py docs/source/conf.py --exclude mullet/_version.py || echo "--- black failed ---" >&2; \
 		echo "\n\n=== flake8 ==="; $(VENV_DIR)/bin/flake8 src tests setup.py || echo "--- flake8 failed ---" >&2; \
 		echo "\n\n=== isort ==="; $(VENV_DIR)/bin/isort --check-only --quiet --recursive src tests setup.py || echo "--- isort failed ---" >&2; \
 		echo "\n\n=== pydocstyle ==="; $(VENV_DIR)/bin/pydocstyle src || echo "--- pydocstyle failed ---" >&2; \
@@ -32,7 +32,7 @@ checks: venv  ## run all the checks
 black: venv  ## apply black formatter to source and tests
 	@status=$$(git status --porcelain src tests); \
 	if test "x$${status}" = x; then \
-		$(VENV_DIR)/bin/black --exclude _version.py setup.py src tests; \
+		$(VENV_DIR)/bin/black --exclude _version.py setup.py src tests docs/source/conf.py; \
 	else \
 		echo Not trying any formatting. Working directory is dirty ... >&2; \
 	fi;
