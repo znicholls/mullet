@@ -17,10 +17,10 @@ It provides a place to explore how a simple climate model could be written if it
 Please feel free to make PRs or fork the repository for whatever purpose you like (it's under a BSD license to facilitate this).
 The only request we currently make is that you don't use the model name (Mullet) in case we do one day turn this repository into a fully fledged model.
 
-.. |CI CD| image:: https://github.com/znicholls/mullet/workflows/Mullet-CI-CD/badge.svg
-    :target: https://github.com/znicholls/mullet/actions?query=workflow%3AMullet-CI-CD
-.. |PyPI Install| image:: https://img.shields.io/appveyor/ci/openclimatedata/pymagicc/master.svg
-    :target: https://ci.appveyor.com/project/openclimatedata/pymagicc
+.. |CI CD| image:: https://github.com/znicholls/mullet/workflows/Mullet%20CI-CD/badge.svg
+    :target: https://github.com/znicholls/mullet/actions?query=workflow%3A%22Mullet+CI-CD%22
+.. |PyPI Install| image:: https://github.com/znicholls/mullet/workflows/Test%20PyPI%20install/badge.svg
+    :target: https://github.com/znicholls/mullet/actions?query=workflow%3A%22Test+PyPI+install%22
 .. |PyPI| image:: https://img.shields.io/pypi/pyversions/mullet.svg
     :target: https://pypi.org/project/mullet/
 .. |PyPI Version| image:: https://img.shields.io/pypi/v/mullet.svg
