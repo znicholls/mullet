@@ -36,10 +36,11 @@ REQUIREMENTS_DEV = [
 ]
 
 REQUIREMENTS_EXTRAS = {
-    "docs": REQUIREMENTS_DOCS,
-    "tests": REQUIREMENTS_TESTS,
     "deploy": REQUIREMENTS_DEPLOY,
     "dev": REQUIREMENTS_DEV,
+    "docs": REQUIREMENTS_DOCS,
+    "notebooks": REQUIREMENTS_NOTEBOOKS,
+    "tests": REQUIREMENTS_TESTS,
 }
 
 with open(README, "r") as readme_file:
