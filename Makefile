@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 
-VENV_DIR ?= ./venv
+VENV_DIR ?= venv
 
 define PRINT_HELP_PYSCRIPT
 import re, sys
@@ -17,11 +17,40 @@ export PRINT_HELP_PYSCRIPT
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
+checks: venv  ## run all the checks
+	@echo "=== bandit ==="; $(VENV_DIR)/bin/bandit -c .bandit.yml -r mullet || echo "--- bandit failed ---" >&2; \
+		echo "\n\n=== black ==="; $(VENV_DIR)/bin/black --check src tests setup.py --exclude mullet/_version.py || echo "--- black failed ---" >&2; \
+		echo "\n\n=== flake8 ==="; $(VENV_DIR)/bin/flake8 src tests setup.py || echo "--- flake8 failed ---" >&2; \
+		echo "\n\n=== isort ==="; $(VENV_DIR)/bin/isort --check-only --quiet --recursive src tests setup.py || echo "--- isort failed ---" >&2; \
+		echo "\n\n=== pydocstyle ==="; $(VENV_DIR)/bin/pydocstyle src || echo "--- pydocstyle failed ---" >&2; \
+		echo "\n\n=== pylint ==="; $(VENV_DIR)/bin/pylint src || echo "--- pylint failed ---" >&2; \
+		echo "\n\n=== notebook tests ==="; $(VENV_DIR)/bin/pytest notebooks -r a --nbval --sanitize-with notebooks/notebook-tests.cfg || echo "--- notebook tests failed ---" >&2; \
+		echo "\n\n=== tests ==="; $(VENV_DIR)/bin/pytest tests -r a --cov=mullet --cov-report='' \
+			&& $(VENV_DIR)/bin/coverage report --fail-under=95 || echo "--- tests failed ---" >&2; \
+		echo "\n\n=== sphinx ==="; $(VENV_DIR)/bin/sphinx-build -M html docs/source docs/build -EW || echo "--- sphinx failed ---" >&2
+
+black: venv  ## apply black formatter to source and tests
+	@status=$$(git status --porcelain src tests); \
+	if test "x$${status}" = x; then \
+		$(VENV_DIR)/bin/black --exclude _version.py setup.py src tests; \
+	else \
+		echo Not trying any formatting. Working directory is dirty ... >&2; \
+	fi;
+
+isort: venv  ## format the code
+	@status=$$(git status --porcelain src tests); \
+	if test "x$${status}" = x; then \
+		$(VENV_DIR)/bin/isort --recursive src tests setup.py; \
+	else \
+		echo Not trying any formatting. Working directory is dirty ... >&2; \
+	fi;
+
 test:  $(VENV_DIR) ## run the full testsuite
 	$(VENV_DIR)/bin/pytest --cov -rfsxEX --cov-report term-missing
 
 virtual-environment:  ## update venv, create a new venv if it doesn't exist
 	make $(VENV_DIR)
+	jupyter nbextension enable --py widgetsnbextension
 
 $(VENV_DIR): setup.py
 	[ -d $(VENV_DIR) ] || python3 -m venv $(VENV_DIR)

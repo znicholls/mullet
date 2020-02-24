@@ -1,10 +1,8 @@
 import versioneer
-
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 from setuptools.command.test import test as TestCommand
 
-
-PACKAGE_NAME = "Mullet"
+PACKAGE_NAME = "mullet"
 AUTHOR = "Zebedee Nicholls"
 EMAIL = "zebedee.nicholls@climate-energy-college.org"
 URL = "https://github.com/znicholls/mullet"
@@ -18,15 +16,23 @@ README = "README.rst"
 SOURCE_DIR = "src"
 
 REQUIREMENTS = ["numpy", "scipy"]
-REQUIREMENTS_TESTS = ["codecov", "pytest-cov", "pytest>=4.0"]
+REQUIREMENTS_NOTEBOOKS = [
+    "ipywidgets",
+    "notebook",
+    "pandas",
+    "seaborn",
+    "tqdm",
+]
+REQUIREMENTS_TESTS = ["codecov", "nbval", "pytest-cov", "pytest>=4.0"]
 REQUIREMENTS_DOCS = ["sphinx>=1.4", "sphinx_rtd_theme"]
 REQUIREMENTS_DEPLOY = ["twine>=1.11.0", "setuptools>=38.6.0", "wheel>=0.31.0"]
 
 REQUIREMENTS_DEV = [
-    *["flake8"],
-    *REQUIREMENTS_TESTS,
-    *REQUIREMENTS_DOCS,
+    *["bandit", "black", "flake8", "isort", "mypy", "pydocstyle", "pylint>=2.4.4"],
     *REQUIREMENTS_DEPLOY,
+    *REQUIREMENTS_DOCS,
+    *REQUIREMENTS_NOTEBOOKS,
+    *REQUIREMENTS_TESTS,
 ]
 
 REQUIREMENTS_EXTRAS = {
