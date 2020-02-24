@@ -77,8 +77,10 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Intended Audience :: Developers",
         "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
     ],
     keywords=["mullet", "python", "fortran", "simple", "climate", "model"],
     packages=find_packages(SOURCE_DIR),  # no exclude as only searching in `src`
