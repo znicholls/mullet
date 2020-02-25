@@ -6,15 +6,15 @@ Defined at datatypes.fpp lines 39-110
 
 """
 from __future__ import print_function, absolute_import, division
-import _ExampleDerivedTypes_pkg
+import _example_derived_types_pkg
 import f90wrap.runtime
 import logging
-from ExampleDerivedTypes_pkg.datatypes_allocatable import alloc_arrays
+from example_derived_types_pkg.datatypes_allocatable import alloc_arrays
 
 _arrays = {}
 _objs = {}
 
-@f90wrap.runtime.register_class("ExampleDerivedTypes_pkg.different_types")
+@f90wrap.runtime.register_class("example_derived_types_pkg.different_types")
 class different_types(f90wrap.runtime.FortranDerivedType):
     """
     Type(name=different_types)
@@ -40,7 +40,7 @@ class different_types(f90wrap.runtime.FortranDerivedType):
         Automatically generated constructor for different_types
         """
         f90wrap.runtime.FortranDerivedType.__init__(self)
-        result = _ExampleDerivedTypes_pkg.f90wrap_different_types_initialise()
+        result = _example_derived_types_pkg.f90wrap_different_types_initialise()
         self._handle = result[0] if isinstance(result, tuple) else result
     
     def __del__(self):
@@ -59,7 +59,7 @@ class different_types(f90wrap.runtime.FortranDerivedType):
         Automatically generated destructor for different_types
         """
         if self._alloc:
-            _ExampleDerivedTypes_pkg.f90wrap_different_types_finalise(this=self._handle)
+            _example_derived_types_pkg.f90wrap_different_types_finalise(this=self._handle)
     
     @property
     def alpha(self):
@@ -71,11 +71,11 @@ class different_types(f90wrap.runtime.FortranDerivedType):
         
         """
         return \
-            _ExampleDerivedTypes_pkg.f90wrap_different_types__get__alpha(self._handle)
+            _example_derived_types_pkg.f90wrap_different_types__get__alpha(self._handle)
     
     @alpha.setter
     def alpha(self, alpha):
-        _ExampleDerivedTypes_pkg.f90wrap_different_types__set__alpha(self._handle, \
+        _example_derived_types_pkg.f90wrap_different_types__set__alpha(self._handle, \
             alpha)
     
     @property
@@ -87,11 +87,13 @@ class different_types(f90wrap.runtime.FortranDerivedType):
         Defined at datatypes.fpp line 56
         
         """
-        return _ExampleDerivedTypes_pkg.f90wrap_different_types__get__beta(self._handle)
+        return \
+            _example_derived_types_pkg.f90wrap_different_types__get__beta(self._handle)
     
     @beta.setter
     def beta(self, beta):
-        _ExampleDerivedTypes_pkg.f90wrap_different_types__set__beta(self._handle, beta)
+        _example_derived_types_pkg.f90wrap_different_types__set__beta(self._handle, \
+            beta)
     
     @property
     def delta(self):
@@ -103,11 +105,11 @@ class different_types(f90wrap.runtime.FortranDerivedType):
         
         """
         return \
-            _ExampleDerivedTypes_pkg.f90wrap_different_types__get__delta(self._handle)
+            _example_derived_types_pkg.f90wrap_different_types__get__delta(self._handle)
     
     @delta.setter
     def delta(self, delta):
-        _ExampleDerivedTypes_pkg.f90wrap_different_types__set__delta(self._handle, \
+        _example_derived_types_pkg.f90wrap_different_types__set__delta(self._handle, \
             delta)
     
     def __str__(self):
@@ -124,7 +126,7 @@ class different_types(f90wrap.runtime.FortranDerivedType):
     _dt_array_initialisers = []
     
 
-@f90wrap.runtime.register_class("ExampleDerivedTypes_pkg.fixed_shape_arrays")
+@f90wrap.runtime.register_class("example_derived_types_pkg.fixed_shape_arrays")
 class fixed_shape_arrays(f90wrap.runtime.FortranDerivedType):
     """
     Type(name=fixed_shape_arrays)
@@ -150,7 +152,7 @@ class fixed_shape_arrays(f90wrap.runtime.FortranDerivedType):
         Automatically generated constructor for fixed_shape_arrays
         """
         f90wrap.runtime.FortranDerivedType.__init__(self)
-        result = _ExampleDerivedTypes_pkg.f90wrap_fixed_shape_arrays_initialise()
+        result = _example_derived_types_pkg.f90wrap_fixed_shape_arrays_initialise()
         self._handle = result[0] if isinstance(result, tuple) else result
     
     def __del__(self):
@@ -169,7 +171,8 @@ class fixed_shape_arrays(f90wrap.runtime.FortranDerivedType):
         Automatically generated destructor for fixed_shape_arrays
         """
         if self._alloc:
-            _ExampleDerivedTypes_pkg.f90wrap_fixed_shape_arrays_finalise(this=self._handle)
+            \
+                _example_derived_types_pkg.f90wrap_fixed_shape_arrays_finalise(this=self._handle)
     
     @property
     def eta(self):
@@ -181,13 +184,13 @@ class fixed_shape_arrays(f90wrap.runtime.FortranDerivedType):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _ExampleDerivedTypes_pkg.f90wrap_fixed_shape_arrays__array__eta(self._handle)
+            _example_derived_types_pkg.f90wrap_fixed_shape_arrays__array__eta(self._handle)
         if array_handle in self._arrays:
             eta = self._arrays[array_handle]
         else:
             eta = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     self._handle,
-                                    _ExampleDerivedTypes_pkg.f90wrap_fixed_shape_arrays__array__eta)
+                                    _example_derived_types_pkg.f90wrap_fixed_shape_arrays__array__eta)
             self._arrays[array_handle] = eta
         return eta
     
@@ -205,13 +208,13 @@ class fixed_shape_arrays(f90wrap.runtime.FortranDerivedType):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _ExampleDerivedTypes_pkg.f90wrap_fixed_shape_arrays__array__theta(self._handle)
+            _example_derived_types_pkg.f90wrap_fixed_shape_arrays__array__theta(self._handle)
         if array_handle in self._arrays:
             theta = self._arrays[array_handle]
         else:
             theta = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     self._handle,
-                                    _ExampleDerivedTypes_pkg.f90wrap_fixed_shape_arrays__array__theta)
+                                    _example_derived_types_pkg.f90wrap_fixed_shape_arrays__array__theta)
             self._arrays[array_handle] = theta
         return theta
     
@@ -229,13 +232,13 @@ class fixed_shape_arrays(f90wrap.runtime.FortranDerivedType):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _ExampleDerivedTypes_pkg.f90wrap_fixed_shape_arrays__array__iota(self._handle)
+            _example_derived_types_pkg.f90wrap_fixed_shape_arrays__array__iota(self._handle)
         if array_handle in self._arrays:
             iota = self._arrays[array_handle]
         else:
             iota = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     self._handle,
-                                    _ExampleDerivedTypes_pkg.f90wrap_fixed_shape_arrays__array__iota)
+                                    _example_derived_types_pkg.f90wrap_fixed_shape_arrays__array__iota)
             self._arrays[array_handle] = iota
         return iota
     
@@ -257,7 +260,7 @@ class fixed_shape_arrays(f90wrap.runtime.FortranDerivedType):
     _dt_array_initialisers = []
     
 
-@f90wrap.runtime.register_class("ExampleDerivedTypes_pkg.nested")
+@f90wrap.runtime.register_class("example_derived_types_pkg.nested")
 class nested(f90wrap.runtime.FortranDerivedType):
     """
     Type(name=nested)
@@ -283,7 +286,7 @@ class nested(f90wrap.runtime.FortranDerivedType):
         Automatically generated constructor for nested
         """
         f90wrap.runtime.FortranDerivedType.__init__(self)
-        result = _ExampleDerivedTypes_pkg.f90wrap_nested_initialise()
+        result = _example_derived_types_pkg.f90wrap_nested_initialise()
         self._handle = result[0] if isinstance(result, tuple) else result
     
     def __del__(self):
@@ -302,7 +305,7 @@ class nested(f90wrap.runtime.FortranDerivedType):
         Automatically generated destructor for nested
         """
         if self._alloc:
-            _ExampleDerivedTypes_pkg.f90wrap_nested_finalise(this=self._handle)
+            _example_derived_types_pkg.f90wrap_nested_finalise(this=self._handle)
     
     @property
     def mu(self):
@@ -313,7 +316,7 @@ class nested(f90wrap.runtime.FortranDerivedType):
         Defined at datatypes.fpp line 68
         
         """
-        mu_handle = _ExampleDerivedTypes_pkg.f90wrap_nested__get__mu(self._handle)
+        mu_handle = _example_derived_types_pkg.f90wrap_nested__get__mu(self._handle)
         if tuple(mu_handle) in self._objs:
             mu = self._objs[tuple(mu_handle)]
         else:
@@ -324,7 +327,7 @@ class nested(f90wrap.runtime.FortranDerivedType):
     @mu.setter
     def mu(self, mu):
         mu = mu._handle
-        _ExampleDerivedTypes_pkg.f90wrap_nested__set__mu(self._handle, mu)
+        _example_derived_types_pkg.f90wrap_nested__set__mu(self._handle, mu)
     
     @property
     def nu(self):
@@ -335,7 +338,7 @@ class nested(f90wrap.runtime.FortranDerivedType):
         Defined at datatypes.fpp line 69
         
         """
-        nu_handle = _ExampleDerivedTypes_pkg.f90wrap_nested__get__nu(self._handle)
+        nu_handle = _example_derived_types_pkg.f90wrap_nested__get__nu(self._handle)
         if tuple(nu_handle) in self._objs:
             nu = self._objs[tuple(nu_handle)]
         else:
@@ -346,7 +349,7 @@ class nested(f90wrap.runtime.FortranDerivedType):
     @nu.setter
     def nu(self, nu):
         nu = nu._handle
-        _ExampleDerivedTypes_pkg.f90wrap_nested__set__nu(self._handle, nu)
+        _example_derived_types_pkg.f90wrap_nested__set__nu(self._handle, nu)
     
     def __str__(self):
         ret = ['<nested>{\n']
@@ -360,7 +363,7 @@ class nested(f90wrap.runtime.FortranDerivedType):
     _dt_array_initialisers = []
     
 
-@f90wrap.runtime.register_class("ExampleDerivedTypes_pkg.pointer_arrays")
+@f90wrap.runtime.register_class("example_derived_types_pkg.pointer_arrays")
 class pointer_arrays(f90wrap.runtime.FortranDerivedType):
     """
     Type(name=pointer_arrays)
@@ -386,7 +389,7 @@ class pointer_arrays(f90wrap.runtime.FortranDerivedType):
         Automatically generated constructor for pointer_arrays
         """
         f90wrap.runtime.FortranDerivedType.__init__(self)
-        result = _ExampleDerivedTypes_pkg.f90wrap_pointer_arrays_initialise()
+        result = _example_derived_types_pkg.f90wrap_pointer_arrays_initialise()
         self._handle = result[0] if isinstance(result, tuple) else result
     
     def __del__(self):
@@ -405,7 +408,7 @@ class pointer_arrays(f90wrap.runtime.FortranDerivedType):
         Automatically generated destructor for pointer_arrays
         """
         if self._alloc:
-            _ExampleDerivedTypes_pkg.f90wrap_pointer_arrays_finalise(this=self._handle)
+            _example_derived_types_pkg.f90wrap_pointer_arrays_finalise(this=self._handle)
     
     @property
     def chi(self):
@@ -417,13 +420,13 @@ class pointer_arrays(f90wrap.runtime.FortranDerivedType):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _ExampleDerivedTypes_pkg.f90wrap_pointer_arrays__array__chi(self._handle)
+            _example_derived_types_pkg.f90wrap_pointer_arrays__array__chi(self._handle)
         if array_handle in self._arrays:
             chi = self._arrays[array_handle]
         else:
             chi = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     self._handle,
-                                    _ExampleDerivedTypes_pkg.f90wrap_pointer_arrays__array__chi)
+                                    _example_derived_types_pkg.f90wrap_pointer_arrays__array__chi)
             self._arrays[array_handle] = chi
         return chi
     
@@ -441,13 +444,13 @@ class pointer_arrays(f90wrap.runtime.FortranDerivedType):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _ExampleDerivedTypes_pkg.f90wrap_pointer_arrays__array__psi(self._handle)
+            _example_derived_types_pkg.f90wrap_pointer_arrays__array__psi(self._handle)
         if array_handle in self._arrays:
             psi = self._arrays[array_handle]
         else:
             psi = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     self._handle,
-                                    _ExampleDerivedTypes_pkg.f90wrap_pointer_arrays__array__psi)
+                                    _example_derived_types_pkg.f90wrap_pointer_arrays__array__psi)
             self._arrays[array_handle] = psi
         return psi
     
@@ -465,13 +468,13 @@ class pointer_arrays(f90wrap.runtime.FortranDerivedType):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _ExampleDerivedTypes_pkg.f90wrap_pointer_arrays__array__chi_shape(self._handle)
+            _example_derived_types_pkg.f90wrap_pointer_arrays__array__chi_shape(self._handle)
         if array_handle in self._arrays:
             chi_shape = self._arrays[array_handle]
         else:
             chi_shape = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     self._handle,
-                                    _ExampleDerivedTypes_pkg.f90wrap_pointer_arrays__array__chi_shape)
+                                    _example_derived_types_pkg.f90wrap_pointer_arrays__array__chi_shape)
             self._arrays[array_handle] = chi_shape
         return chi_shape
     
@@ -489,13 +492,13 @@ class pointer_arrays(f90wrap.runtime.FortranDerivedType):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _ExampleDerivedTypes_pkg.f90wrap_pointer_arrays__array__psi_shape(self._handle)
+            _example_derived_types_pkg.f90wrap_pointer_arrays__array__psi_shape(self._handle)
         if array_handle in self._arrays:
             psi_shape = self._arrays[array_handle]
         else:
             psi_shape = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     self._handle,
-                                    _ExampleDerivedTypes_pkg.f90wrap_pointer_arrays__array__psi_shape)
+                                    _example_derived_types_pkg.f90wrap_pointer_arrays__array__psi_shape)
             self._arrays[array_handle] = psi_shape
         return psi_shape
     
@@ -519,7 +522,7 @@ class pointer_arrays(f90wrap.runtime.FortranDerivedType):
     _dt_array_initialisers = []
     
 
-@f90wrap.runtime.register_class("ExampleDerivedTypes_pkg.alloc_arrays_2")
+@f90wrap.runtime.register_class("example_derived_types_pkg.alloc_arrays_2")
 class alloc_arrays_2(f90wrap.runtime.FortranDerivedType):
     """
     Type(name=alloc_arrays_2)
@@ -545,7 +548,7 @@ class alloc_arrays_2(f90wrap.runtime.FortranDerivedType):
         Automatically generated constructor for alloc_arrays_2
         """
         f90wrap.runtime.FortranDerivedType.__init__(self)
-        result = _ExampleDerivedTypes_pkg.f90wrap_alloc_arrays_2_initialise()
+        result = _example_derived_types_pkg.f90wrap_alloc_arrays_2_initialise()
         self._handle = result[0] if isinstance(result, tuple) else result
     
     def __del__(self):
@@ -564,7 +567,7 @@ class alloc_arrays_2(f90wrap.runtime.FortranDerivedType):
         Automatically generated destructor for alloc_arrays_2
         """
         if self._alloc:
-            _ExampleDerivedTypes_pkg.f90wrap_alloc_arrays_2_finalise(this=self._handle)
+            _example_derived_types_pkg.f90wrap_alloc_arrays_2_finalise(this=self._handle)
     
     @property
     def chi(self):
@@ -576,13 +579,13 @@ class alloc_arrays_2(f90wrap.runtime.FortranDerivedType):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _ExampleDerivedTypes_pkg.f90wrap_alloc_arrays_2__array__chi(self._handle)
+            _example_derived_types_pkg.f90wrap_alloc_arrays_2__array__chi(self._handle)
         if array_handle in self._arrays:
             chi = self._arrays[array_handle]
         else:
             chi = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     self._handle,
-                                    _ExampleDerivedTypes_pkg.f90wrap_alloc_arrays_2__array__chi)
+                                    _example_derived_types_pkg.f90wrap_alloc_arrays_2__array__chi)
             self._arrays[array_handle] = chi
         return chi
     
@@ -600,13 +603,13 @@ class alloc_arrays_2(f90wrap.runtime.FortranDerivedType):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _ExampleDerivedTypes_pkg.f90wrap_alloc_arrays_2__array__psi(self._handle)
+            _example_derived_types_pkg.f90wrap_alloc_arrays_2__array__psi(self._handle)
         if array_handle in self._arrays:
             psi = self._arrays[array_handle]
         else:
             psi = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     self._handle,
-                                    _ExampleDerivedTypes_pkg.f90wrap_alloc_arrays_2__array__psi)
+                                    _example_derived_types_pkg.f90wrap_alloc_arrays_2__array__psi)
             self._arrays[array_handle] = psi
         return psi
     
@@ -624,13 +627,13 @@ class alloc_arrays_2(f90wrap.runtime.FortranDerivedType):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _ExampleDerivedTypes_pkg.f90wrap_alloc_arrays_2__array__chi_shape(self._handle)
+            _example_derived_types_pkg.f90wrap_alloc_arrays_2__array__chi_shape(self._handle)
         if array_handle in self._arrays:
             chi_shape = self._arrays[array_handle]
         else:
             chi_shape = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     self._handle,
-                                    _ExampleDerivedTypes_pkg.f90wrap_alloc_arrays_2__array__chi_shape)
+                                    _example_derived_types_pkg.f90wrap_alloc_arrays_2__array__chi_shape)
             self._arrays[array_handle] = chi_shape
         return chi_shape
     
@@ -648,13 +651,13 @@ class alloc_arrays_2(f90wrap.runtime.FortranDerivedType):
         
         """
         array_ndim, array_type, array_shape, array_handle = \
-            _ExampleDerivedTypes_pkg.f90wrap_alloc_arrays_2__array__psi_shape(self._handle)
+            _example_derived_types_pkg.f90wrap_alloc_arrays_2__array__psi_shape(self._handle)
         if array_handle in self._arrays:
             psi_shape = self._arrays[array_handle]
         else:
             psi_shape = f90wrap.runtime.get_array(f90wrap.runtime.sizeof_fortran_t,
                                     self._handle,
-                                    _ExampleDerivedTypes_pkg.f90wrap_alloc_arrays_2__array__psi_shape)
+                                    _example_derived_types_pkg.f90wrap_alloc_arrays_2__array__psi_shape)
             self._arrays[array_handle] = psi_shape
         return psi_shape
     
@@ -678,7 +681,7 @@ class alloc_arrays_2(f90wrap.runtime.FortranDerivedType):
     _dt_array_initialisers = []
     
 
-@f90wrap.runtime.register_class("ExampleDerivedTypes_pkg.array_nested")
+@f90wrap.runtime.register_class("example_derived_types_pkg.array_nested")
 class array_nested(f90wrap.runtime.FortranDerivedType):
     """
     Type(name=array_nested)
@@ -704,7 +707,7 @@ class array_nested(f90wrap.runtime.FortranDerivedType):
         Automatically generated constructor for array_nested
         """
         f90wrap.runtime.FortranDerivedType.__init__(self)
-        result = _ExampleDerivedTypes_pkg.f90wrap_array_nested_initialise()
+        result = _example_derived_types_pkg.f90wrap_array_nested_initialise()
         self._handle = result[0] if isinstance(result, tuple) else result
     
     def __del__(self):
@@ -723,13 +726,13 @@ class array_nested(f90wrap.runtime.FortranDerivedType):
         Automatically generated destructor for array_nested
         """
         if self._alloc:
-            _ExampleDerivedTypes_pkg.f90wrap_array_nested_finalise(this=self._handle)
+            _example_derived_types_pkg.f90wrap_array_nested_finalise(this=self._handle)
     
     def init_array_xi(self):
         self.xi = f90wrap.runtime.FortranDerivedTypeArray(self,
-                                        _ExampleDerivedTypes_pkg.f90wrap_array_nested__array_getitem__xi,
-                                        _ExampleDerivedTypes_pkg.f90wrap_array_nested__array_setitem__xi,
-                                        _ExampleDerivedTypes_pkg.f90wrap_array_nested__array_len__xi,
+                                        _example_derived_types_pkg.f90wrap_array_nested__array_getitem__xi,
+                                        _example_derived_types_pkg.f90wrap_array_nested__array_setitem__xi,
+                                        _example_derived_types_pkg.f90wrap_array_nested__array_len__xi,
                                         """
         Element xi ftype=type(different_types) pytype=Different_Types
         
@@ -741,9 +744,9 @@ class array_nested(f90wrap.runtime.FortranDerivedType):
     
     def init_array_omicron(self):
         self.omicron = f90wrap.runtime.FortranDerivedTypeArray(self,
-                                        _ExampleDerivedTypes_pkg.f90wrap_array_nested__array_getitem__omicron,
-                                        _ExampleDerivedTypes_pkg.f90wrap_array_nested__array_setitem__omicron,
-                                        _ExampleDerivedTypes_pkg.f90wrap_array_nested__array_len__omicron,
+                                        _example_derived_types_pkg.f90wrap_array_nested__array_getitem__omicron,
+                                        _example_derived_types_pkg.f90wrap_array_nested__array_setitem__omicron,
+                                        _example_derived_types_pkg.f90wrap_array_nested__array_len__omicron,
                                         """
         Element omicron ftype=type(fixed_shape_arrays) pytype=Fixed_Shape_Arrays
         
@@ -755,9 +758,9 @@ class array_nested(f90wrap.runtime.FortranDerivedType):
     
     def init_array_pi(self):
         self.pi = f90wrap.runtime.FortranDerivedTypeArray(self,
-                                        _ExampleDerivedTypes_pkg.f90wrap_array_nested__array_getitem__pi,
-                                        _ExampleDerivedTypes_pkg.f90wrap_array_nested__array_setitem__pi,
-                                        _ExampleDerivedTypes_pkg.f90wrap_array_nested__array_len__pi,
+                                        _example_derived_types_pkg.f90wrap_array_nested__array_getitem__pi,
+                                        _example_derived_types_pkg.f90wrap_array_nested__array_setitem__pi,
+                                        _example_derived_types_pkg.f90wrap_array_nested__array_len__pi,
                                         """
         Element pi ftype=type(alloc_arrays) pytype=Alloc_Arrays
         
@@ -783,7 +786,7 @@ def init_array_nested(self, size_bn):
     size_bn : int
     
     """
-    _ExampleDerivedTypes_pkg.f90wrap_init_array_nested(dertype=self._handle, \
+    _example_derived_types_pkg.f90wrap_init_array_nested(dertype=self._handle, \
         size_bn=size_bn)
 
 def destroy_array_nested(self):
@@ -798,7 +801,7 @@ def destroy_array_nested(self):
     dertype : Array_Nested
     
     """
-    _ExampleDerivedTypes_pkg.f90wrap_destroy_array_nested(dertype=self._handle)
+    _example_derived_types_pkg.f90wrap_destroy_array_nested(dertype=self._handle)
 
 
 _array_initialisers = []

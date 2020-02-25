@@ -37,9 +37,9 @@ import sys
 pkg = False
 if sys.argv[0].endswith('tests_pkg.py'):
     pkg = True
-    import ExampleDerivedTypes_pkg
+    import example_derived_types_pkg
 else:
-    import ExampleDerivedTypes
+    import example_derived_types
 
 class BaseTests(object):
 
@@ -270,7 +270,7 @@ if pkg:
         lib = ExampleDerivedTypes_pkg
 else:
     class LibTests(unittest.TestCase, BaseTests):
-        lib = ExampleDerivedTypes
+        lib = example_derived_types
 
 
 if __name__ == '__main__':
