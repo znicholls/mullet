@@ -4,7 +4,7 @@ module library
 
     implicit none
     private
-    ! public ::
+    public :: set_datastore
 
 contains
 
@@ -13,7 +13,7 @@ contains
         use datatypes, only: datastore
 
         type(datastore), intent(inout) :: dstore
-        real(kind=idp), intent(in) :: dstore_magnitude
+        real(kind=idp), intent(in) :: dstore_magnitude(size(dstore%magnitude))
         character(len = 50), intent(in) :: dstore_unit
 
         dstore%magnitude = dstore_magnitude

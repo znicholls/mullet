@@ -25,13 +25,13 @@ KIND_MAP = kind_map
 LIBSRC_SOURCES = parameters datatypes library
 
 # file names
-LIBSRC_FILES = $(addsuffix .f90,${LIBSRC_SOURCES})
+LIBSRC_FILES = $(addsuffix .f90, ${LIBSRC_SOURCES})
 
 # object files
-LIBSRC_OBJECTS = $(addsuffix .o,${LIBSRC_SOURCES})
+LIBSRC_OBJECTS = $(addsuffix .o, ${LIBSRC_SOURCES})
 
 # only used when cleaning up
-LIBSRC_FPP_FILES = $(addsuffix .fpp,${LIBSRC_SOURCES})
+LIBSRC_FPP_FILES = $(addsuffix .fpp, ${LIBSRC_SOURCES})
 
 # source files that require a Python interface
 
@@ -39,13 +39,13 @@ LIBSRC_FPP_FILES = $(addsuffix .fpp,${LIBSRC_SOURCES})
 LIBSRC_WRAP_SOURCES = datatypes library
 
 # file names
-LIBSRC_WRAP_FILES = $(addsuffix .f90,${LIBSRC_WRAP_SOURCES})
+LIBSRC_WRAP_FILES = $(addsuffix .f90, ${LIBSRC_WRAP_SOURCES})
 
 # object files
-LIBSRC_WRAP_OBJECTS = $(addsuffix .o,${LIBSRC_WRAP_SOURCES})
+LIBSRC_WRAP_OBJECTS = $(addsuffix .o, ${LIBSRC_WRAP_SOURCES})
 
 # fpp files
-LIBSRC_WRAP_FPP_FILES = $(addsuffix .fpp,${LIBSRC_WRAP_SOURCES})
+LIBSRC_WRAP_FPP_FILES = $(addsuffix .fpp, ${LIBSRC_WRAP_SOURCES})
 
 define PRINT_HELP_PYSCRIPT
 import re, sys
@@ -63,7 +63,7 @@ help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 .PHONY: all
-all: _${PYTHON_MODULE_NAME}.so _${PYTHON_MODULE_NAME}_pkg.so
+all: _${PYTHON_MODULE_NAME}.cpython-37m-darwin.so _${PYTHON_MODULE_NAME}_pkg.cpython-37m-darwin.so
 
 .PHONY: clean
 clean:
@@ -86,12 +86,12 @@ clean:
 	${CC} ${CFLAGS} -c $< -o $@
 
 %.fpp: %.f90
-	${FPP} ${FPP_F90FLAGS} $<  -o $@
+	${FPP} ${FPP_F90FLAGS} $< -o $@
 
 libsrc.a: ${LIBSRC_OBJECTS}
 	${LIBTOOL} $@ $?
 
-_${PYTHON_MODULE_NAME}.so: libsrc.a ${LIBSRC_FPP_FILES}
+_${PYTHON_MODULE_NAME}.cpython-37m-darwin.so: libsrc.a ${LIBSRC_FPP_FILES}
 	f90wrap \
 		-m ${PYTHON_MODULE_NAME} \
 		${LIBSRC_WRAP_FPP_FILES} \
@@ -106,7 +106,7 @@ _${PYTHON_MODULE_NAME}.so: libsrc.a ${LIBSRC_FPP_FILES}
 		f90wrap*.f90
 
 
-_${PYTHON_MODULE_NAME}_pkg.so: libsrc.a ${LIBSRC_FPP_FILES}
+_${PYTHON_MODULE_NAME}_pkg.cpython-37m-darwin.so: libsrc.a ${LIBSRC_FPP_FILES}
 	f90wrap \
 		-m ${PYTHON_MODULE_NAME}_pkg \
 		${LIBSRC_WRAP_FPP_FILES} \
@@ -120,3 +120,6 @@ _${PYTHON_MODULE_NAME}_pkg.so: libsrc.a ${LIBSRC_FPP_FILES}
 		-m _${PYTHON_MODULE_NAME}_pkg \
 		-L. -lsrc \
 		f90wrap*.f90
+
+test: all
+	pytest test.py -v

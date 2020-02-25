@@ -170,7 +170,24 @@ class Library(f90wrap.runtime.FortranModule):
     Defined at library.fpp lines 5-26
     
     """
-    pass
+    @staticmethod
+    def set_datastore(self, dstore_magnitude, dstore_unit):
+        """
+        set_datastore(self, dstore_magnitude, dstore_unit)
+        
+        
+        Defined at library.fpp lines 15-26
+        
+        Parameters
+        ----------
+        dstore : Datastore
+        dstore_magnitude : float array
+        dstore_unit : str
+        
+        """
+        _test_scm.f90wrap_set_datastore(dstore=self._handle, \
+            dstore_magnitude=dstore_magnitude, dstore_unit=dstore_unit)
+    
     _dt_array_initialisers = []
     
 
