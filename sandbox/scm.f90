@@ -98,7 +98,6 @@ contains
         integer :: i, n
 
         n = size(dat_effrf_total%magnitude)
-
         do i = 1, n
             call step_total_radiative_forcing_driven(i)
         enddo
