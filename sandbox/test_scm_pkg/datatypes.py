@@ -2,7 +2,7 @@
 Module datatypes
 
 
-Defined at datatypes.fpp lines 5-36
+Defined at datatypes.fpp lines 5-44
 
 """
 from __future__ import print_function, absolute_import, division
@@ -13,10 +13,10 @@ import logging
 _arrays = {}
 _objs = {}
 
-@f90wrap.runtime.register_class("test_scm_pkg.datastore")
-class datastore(f90wrap.runtime.FortranDerivedType):
+@f90wrap.runtime.register_class("test_scm_pkg.scalar")
+class scalar(f90wrap.runtime.FortranDerivedType):
     """
-    Type(name=datastore)
+    Type(name=scalar)
     
     
     Defined at datatypes.fpp lines 13-17
@@ -24,10 +24,116 @@ class datastore(f90wrap.runtime.FortranDerivedType):
     """
     def __init__(self, handle=None):
         """
-        self = Datastore()
+        self = Scalar()
         
         
         Defined at datatypes.fpp lines 13-17
+        
+        
+        Returns
+        -------
+        this : Scalar
+        	Object to be constructed
+        
+        
+        Automatically generated constructor for scalar
+        """
+        f90wrap.runtime.FortranDerivedType.__init__(self)
+        result = _test_scm_pkg.f90wrap_scalar_initialise()
+        self._handle = result[0] if isinstance(result, tuple) else result
+    
+    def __del__(self):
+        """
+        Destructor for class Scalar
+        
+        
+        Defined at datatypes.fpp lines 13-17
+        
+        Parameters
+        ----------
+        this : Scalar
+        	Object to be destructed
+        
+        
+        Automatically generated destructor for scalar
+        """
+        if self._alloc:
+            _test_scm_pkg.f90wrap_scalar_finalise(this=self._handle)
+    
+    @property
+    def unit(self):
+        """
+        Element unit ftype=character(len = 50) pytype=str
+        
+        
+        Defined at datatypes.fpp line 14
+        
+        """
+        return _test_scm_pkg.f90wrap_scalar__get__unit(self._handle)
+    
+    @unit.setter
+    def unit(self, unit):
+        _test_scm_pkg.f90wrap_scalar__set__unit(self._handle, unit)
+    
+    @property
+    def comments(self):
+        """
+        Element comments ftype=character(len = 50) pytype=str
+        
+        
+        Defined at datatypes.fpp line 15
+        
+        """
+        return _test_scm_pkg.f90wrap_scalar__get__comments(self._handle)
+    
+    @comments.setter
+    def comments(self, comments):
+        _test_scm_pkg.f90wrap_scalar__set__comments(self._handle, comments)
+    
+    @property
+    def magnitude(self):
+        """
+        Element magnitude ftype=real(idp) pytype=float
+        
+        
+        Defined at datatypes.fpp line 16
+        
+        """
+        return _test_scm_pkg.f90wrap_scalar__get__magnitude(self._handle)
+    
+    @magnitude.setter
+    def magnitude(self, magnitude):
+        _test_scm_pkg.f90wrap_scalar__set__magnitude(self._handle, magnitude)
+    
+    def __str__(self):
+        ret = ['<scalar>{\n']
+        ret.append('    unit : ')
+        ret.append(repr(self.unit))
+        ret.append(',\n    comments : ')
+        ret.append(repr(self.comments))
+        ret.append(',\n    magnitude : ')
+        ret.append(repr(self.magnitude))
+        ret.append('}')
+        return ''.join(ret)
+    
+    _dt_array_initialisers = []
+    
+
+@f90wrap.runtime.register_class("test_scm_pkg.datastore")
+class datastore(f90wrap.runtime.FortranDerivedType):
+    """
+    Type(name=datastore)
+    
+    
+    Defined at datatypes.fpp lines 19-23
+    
+    """
+    def __init__(self, handle=None):
+        """
+        self = Datastore()
+        
+        
+        Defined at datatypes.fpp lines 19-23
         
         
         Returns
@@ -47,7 +153,7 @@ class datastore(f90wrap.runtime.FortranDerivedType):
         Destructor for class Datastore
         
         
-        Defined at datatypes.fpp lines 13-17
+        Defined at datatypes.fpp lines 19-23
         
         Parameters
         ----------
@@ -66,7 +172,7 @@ class datastore(f90wrap.runtime.FortranDerivedType):
         Element unit ftype=character(len = 50) pytype=str
         
         
-        Defined at datatypes.fpp line 14
+        Defined at datatypes.fpp line 20
         
         """
         return _test_scm_pkg.f90wrap_datastore__get__unit(self._handle)
@@ -81,7 +187,7 @@ class datastore(f90wrap.runtime.FortranDerivedType):
         Element comments ftype=character(len = 50) pytype=str
         
         
-        Defined at datatypes.fpp line 15
+        Defined at datatypes.fpp line 21
         
         """
         return _test_scm_pkg.f90wrap_datastore__get__comments(self._handle)
@@ -96,7 +202,7 @@ class datastore(f90wrap.runtime.FortranDerivedType):
         Element magnitude ftype=real(idp) pytype=float
         
         
-        Defined at datatypes.fpp line 16
+        Defined at datatypes.fpp line 22
         
         """
         array_ndim, array_type, array_shape, array_handle = \
@@ -128,27 +234,29 @@ class datastore(f90wrap.runtime.FortranDerivedType):
     _dt_array_initialisers = []
     
 
-def init_datastore(self, tsteps):
+def init_datastore(self, tsteps, dsunit):
     """
-    init_datastore(self, tsteps)
+    init_datastore(self, tsteps, dsunit)
     
     
-    Defined at datatypes.fpp lines 21-28
+    Defined at datatypes.fpp lines 27-36
     
     Parameters
     ----------
     dstore : Datastore
     tsteps : int
+    dsunit : str
     
     """
-    _test_scm_pkg.f90wrap_init_datastore(dstore=self._handle, tsteps=tsteps)
+    _test_scm_pkg.f90wrap_init_datastore(dstore=self._handle, tsteps=tsteps, \
+        dsunit=dsunit)
 
 def destroy_datastore(self):
     """
     destroy_datastore(self)
     
     
-    Defined at datatypes.fpp lines 30-36
+    Defined at datatypes.fpp lines 38-44
     
     Parameters
     ----------

@@ -22,7 +22,7 @@ PYTHON_MODULE_NAME = test_scm
 KIND_MAP = kind_map
 
 # names (without suffix), f90 sources
-LIBSRC_SOURCES = parameters datatypes library
+LIBSRC_SOURCES = parameters datatypes utils library effective_radiative_forcing temperature scm
 
 # file names
 LIBSRC_FILES = $(addsuffix .f90, ${LIBSRC_SOURCES})
@@ -33,10 +33,11 @@ LIBSRC_OBJECTS = $(addsuffix .o, ${LIBSRC_SOURCES})
 # only used when cleaning up
 LIBSRC_FPP_FILES = $(addsuffix .fpp, ${LIBSRC_SOURCES})
 
+
 # source files that require a Python interface
 
 # names (without suffix), f90 sources
-LIBSRC_WRAP_SOURCES = datatypes library
+LIBSRC_WRAP_SOURCES = datatypes library effective_radiative_forcing temperature scm
 
 # file names
 LIBSRC_WRAP_FILES = $(addsuffix .f90, ${LIBSRC_WRAP_SOURCES})

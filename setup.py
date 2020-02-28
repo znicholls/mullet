@@ -15,7 +15,7 @@ README = "README.rst"
 
 SOURCE_DIR = "src"
 
-REQUIREMENTS = ["numpy", "scipy"]
+REQUIREMENTS = ["numpy", "scipy", "scmdata"]
 REQUIREMENTS_NOTEBOOKS = [
     "ipywidgets",
     "notebook",

@@ -4,8 +4,8 @@ module parameters
     private
     public :: idp, isp
 
-    integer, parameter :: idp=kind(1d0)  ! double precision, np.float64 equivalent
-    integer, parameter :: isp=kind(1e0)  ! single precision, np.float32 equivalent
+    integer, parameter :: idp=kind(0.d0)  ! double precision
+    integer, parameter :: isp=kind(0.e0)  ! single precision
 
 contains
 
